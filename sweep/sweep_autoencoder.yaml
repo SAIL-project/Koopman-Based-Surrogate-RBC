@@ -1,0 +1,25 @@
+program: scripts/train_autoencoder.py
+name: Autoencoder Ra 5_000_000
+method: random
+metric:
+  goal: minimize
+  name: val/metric-NormalizedSumError
+parameters:
+  data.ra:
+    value: 5_000_000
+  modeltype:
+    value: "ae"
+  model.latent_dimension:
+    values: [10, 20, 30, 50, 100]
+  model.base_filters:
+    value: 64
+  model.lr:
+    values: [0.01, 0.001, 0.0005]
+  model.loss:
+    values: ["nsse"]
+
+command:
+  - ${env}
+  - python
+  - ${program}
+  - ${args_no_hyphens}

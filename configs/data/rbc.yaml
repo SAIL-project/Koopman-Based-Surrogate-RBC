@@ -1,0 +1,20 @@
+# rbc params
+dt: 1
+ra: 1_000_000
+include_control: false
+type: convection
+# episode params
+data_dir: ${paths.data_dir}/RayleighBenard-Dataset
+train_sequence_length: 5
+test_sequence_length: 30
+train_length: 100
+test_length: 50
+time_lag: 1
+val_for_test: False
+# torch params
+batch_size: 32
+num_workers: 0
+pin_memory: False
+persistent_workers: False
+means: [0.0, 0.0, 0.0]
+stds: [1.0, 1.0, 1.0]

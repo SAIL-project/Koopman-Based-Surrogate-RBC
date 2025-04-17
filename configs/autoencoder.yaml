@@ -1,0 +1,33 @@
+defaults:
+  - data: rbc
+  - paths: default
+  - hydra: default
+  - _self_
+
+epochs: 100
+modeltype: "ae"
+
+model:
+  latent_dimension: 200
+  input_channel: 3
+  base_filters: 64
+  kernel_size: 5
+  lr: 0.001
+  loss: "nsse"
+  compile: false
+
+data:
+  batch_size: 64
+  train_sequence_length: 1
+  test_sequence_length: 1
+  train_length: 250
+  test_length: 250
+  means: [0.0, 0.0, 1.5]
+  stds: [0.35, 0.35, 0.25]
+  type: full
+  ra: 100_000
+  num_workers: 2
+  pin_memory: True
+  persistent_workers: True
+
+task_name: "autoencoder"

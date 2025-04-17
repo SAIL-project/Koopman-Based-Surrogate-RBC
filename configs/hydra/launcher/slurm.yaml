@@ -1,0 +1,22 @@
+# https://hydra.cc/docs/configure_hydra/intro/
+
+defaults:
+  - submitit_slurm
+
+_target_: hydra_plugins.hydra_submitit_launcher.submitit_launcher.SlurmLauncher
+# base
+timeout_min: 600 # 4hours
+cpus_per_task: 16
+gpus_per_node: 1
+tasks_per_node: 1
+mem_gb: 32
+nodes: 1
+name: ${hydra.job.name}
+
+# slurm
+signal_delay_s: 600
+max_num_timeout: 20
+additional_parameters: {}
+array_parallelism: 16
+setup: []
+gres: gpu:1

@@ -1,0 +1,41 @@
+defaults:
+  - data: rbc
+  - paths: default
+  - hydra: default
+  - _self_
+
+epochs: 50
+
+model:
+  loss: "nssse"
+  latent_dimension: 40
+  input_channel: 3
+  base_filters: 64
+  kernel_size: 5
+  ae_ckpt: null #${paths.model_dir}/autoencoder/ra${data.ra}.ckpt
+  horizon_weight: 1.0
+  lambda_id: 1.0
+  lambda_fwd: 1.0
+  lambda_hid: 1.0
+  lambda_reg: 0.0
+  lr_operator: 0.0005
+  lr_autoencoder: 0.0005
+  compile: false
+
+data:
+  batch_size: 64
+  train_sequence_length: 15
+  test_sequence_length: 30
+  train_length: 250
+  test_length: 250
+  val_for_test: False
+  means: [0.0, 0.0, 1.5]
+  stds: [0.35, 0.35, 0.25]
+  type: full
+  ra: 5_000_000
+  dt: 1.0
+  num_workers: 2
+  pin_memory: True
+  persistent_workers: True
+
+task_name: "lran"

@@ -1,0 +1,29 @@
+program: scripts/train_lran.py
+name: LRAN
+method: grid
+metric:
+  goal: minimize
+  name: test/metric-NormalizedSumError
+parameters:
+  data.ra:
+    values: [100_000, 2_000_000, 1_000_000, 5_000_000]
+  data.val_for_test:
+    value: True
+  model.latent_dimension:
+    values: [25, 50]
+  model.horizon_weight:
+    value: 1.0
+  model.lr_operator:
+    value: 0.0005
+  model.lr_autoencoder:
+    value: 0.0005
+  model.loss:
+    value: "nssse"
+  data.train_sequence_length:
+    values: [10, 15, 20]
+
+command:
+  - ${env}
+  - python
+  - ${program}
+  - ${args_no_hyphens}

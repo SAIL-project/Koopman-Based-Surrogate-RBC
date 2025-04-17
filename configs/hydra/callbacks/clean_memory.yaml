@@ -1,0 +1,5 @@
+# @package _global_
+hydra:
+  callbacks:
+    clean_memory:
+      _target_: koopman_rbc.utils.boilerplate.clean_memory.CleanMemoryCallback
